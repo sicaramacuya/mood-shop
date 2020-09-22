@@ -1,9 +1,9 @@
 body {
     font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    font-size: 20px;
-    line-height: 1;
+    font-size: 16px;
+    line-height: 1.2em;
     margin: 0;
-    color: seashell;
+    color: black;
 }
 
 .page-header {
@@ -11,6 +11,11 @@ body {
     flex-direction: row;
     justify-content: space-between;
     background-color: #1d1d1f;
+}
+
+.page-header h4 {
+    color: seashell;
+    font-size: large;
 }
 
 .page-header ul {
@@ -25,4 +30,5 @@ body {
     padding: 0.5em;
     text-decoration: none;
     color: seashell;
+    font-size: large;
 }
