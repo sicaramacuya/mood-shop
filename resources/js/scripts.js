@@ -34,6 +34,7 @@ for (let i=0; i < data.length; ++i) {
 
     // create a botton element and assing an id
     let button = document.createElement('button');
+    // bottom.className = 'cart'
     button.id = data[i].name
 
     // creates a custom attribute called data-price
