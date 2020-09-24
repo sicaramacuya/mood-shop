@@ -1,6 +1,7 @@
 const itemsContainer = document.getElementById('items')
 import data from './data.js'
 
+// this loop will create div elements and create also some childs to it.
 // the length of our data determines how many times this loop goes around
 for (let i=0; i < data.length; ++i) {
     // create a new div element and give it a class name
@@ -52,3 +53,23 @@ for (let i=0; i < data.length; ++i) {
     // put new div inside items container
     itemsContainer.appendChild(newDiv)
 }
+
+// creating the shopping cart
+const cart = []
+
+function addItem(name, price) {
+    const item = {name: name, price: price, qty: 1}
+    // push at the end of the array
+    cart.push(item)
+}
+
+function showItems() {
+    console.log(`You have ${cart.length} items in you cart`)
+}
+
+addItem('Apple', 0.99)
+addItem('Orange', 1.29)
+addItem('Opinion', 0.02)
+addItem('Frisbee', 9.92)
+
+showItems()
