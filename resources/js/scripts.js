@@ -1,7 +1,7 @@
 const itemsContainer = document.getElementById('items')
 import data from './data.js'
 
-// this loop will create div elements and create also some childs to it.
+// div elements and its childs -----------------------------------------------------------
 // the length of our data determines how many times this loop goes around
 for (let i=0; i < data.length; ++i) {
     // create a new div element and give it a class name
@@ -54,22 +54,59 @@ for (let i=0; i < data.length; ++i) {
     itemsContainer.appendChild(newDiv)
 }
 
-// creating the shopping cart
+// shopping cart -------------------------------------------------------------------------
 const cart = []
 
+// add items to the list and in case is repeated just correct its quantity
 function addItem(name, price) {
-    const item = {name: name, price: price, qty: 1}
-    // push at the end of the array
+    // check if the item is already in the list
+    for (let i = 0; i < cart.length; i += 1) {
+        if (cart[i].name === name) {
+            cart[i].qty += 1
+            // stop running the addItem function
+            return
+        }
+    }
+    const item = {name, price, qty: 1}
     cart.push(item)
 }
 
+// log to the console the amount of items, a list and the total price in the cart
 function showItems() {
-    console.log(`You have ${cart.length} items in you cart`)
+    console.log(`You have ${getQty()} items in you cart`)
+
+    for (let i = 0; i < cart.length; i += 1) {
+        console.log(`- ${cart[i].name} $${cart[i].price} x ${cart[i].qty}`)
+    }
+
+    console.log(`Total in cart: $${getTotal()}`)
+}
+
+// calculate and return the quantity of items in the cart
+function getQty () {
+    let qty = 0
+    for (let i = 0; i < cart.length; i += 1) {
+        qty += cart[i].qty
+    }
+    return qty
+}
+
+// calculate and return the total amount of the prices in the cart
+function getTotal () {
+    let total = 0
+    for (let i = 0; i < cart.length; i += 1) {
+        total += cart[i].price * cart[i].qty
+    }
+    return total.toFixed(2)
 }
 
 addItem('Apple', 0.99)
 addItem('Orange', 1.29)
 addItem('Opinion', 0.02)
+addItem('Apple', 0.99)
 addItem('Frisbee', 9.92)
+addItem('Apple', 0.99)
+addItem('Orange', 1.29)
+
 
 showItems()
