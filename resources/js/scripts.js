@@ -100,6 +100,30 @@ function getTotal () {
     return total.toFixed(2)
 }
 
+// remove item from cart
+function removeItem(name, qty = 0) {
+    for (let i = 0; i < cart.length; ++i) {
+        // access the object is to be remove
+        if (cart[i].name === name) {
+            // case were there are at least 1 item for the object on the list
+            if (qty > 0) {
+                cart[i].qty -= qty
+            }
+            // case were there is no items for the object
+            if (cart[i].qty < 1 || qty === 0) {
+                cart.splice(i, 1)
+            }
+            
+            return
+        }
+    }
+}
+
+
+
+
+
+// ------------------------- test code ------------------------------------------
 addItem('Apple', 0.99)
 addItem('Orange', 1.29)
 addItem('Opinion', 0.02)
@@ -107,6 +131,11 @@ addItem('Apple', 0.99)
 addItem('Frisbee', 9.92)
 addItem('Apple', 0.99)
 addItem('Orange', 1.29)
+
+showItems()
+
+removeItem('Apple', 1)
+removeItem('Frisbee')
 
 
 showItems()
