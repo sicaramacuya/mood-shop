@@ -1,5 +1,8 @@
-const itemsContainer = document.getElementById('items')
 import data from './data.js'
+const itemsContainer = document.getElementById('items')
+const itemList = document.getElementById('item-list')
+const cartQty = document.getElementById('cart-qty')
+const cartTotal = document.getElementById('cart-total')
 
 // div elements and its childs -----------------------------------------------------------
 // the length of our data determines how many times this loop goes around
@@ -73,13 +76,19 @@ function addItem(name, price) {
 
 // log to the console the amount of items, a list and the total price in the cart
 function showItems() {
-    console.log(`You have ${getQty()} items in you cart`)
+    const qty = getQty()
+    cartQty.innerHTML = `You have ${qty} items in you cart`
 
+    let itemStr = ''
     for (let i = 0; i < cart.length; i += 1) {
-        console.log(`- ${cart[i].name} $${cart[i].price} x ${cart[i].qty}`)
-    }
+        // {name: 'Apple', price: 0.99, qty: 3} shortcut
+        const {name, price, qty} = cart[i]
 
-    console.log(`Total in cart: $${getTotal()}`)
+        itemStr += `<li>${name} $${price} x ${qty} = ${qty * price}</li>`
+    }
+    itemList.innerHTML = itemStr
+
+    cartTotal.innerHTML = `Total in cart: $${getTotal()}`
 }
 
 // calculate and return the quantity of items in the cart
