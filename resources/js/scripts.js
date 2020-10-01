@@ -86,10 +86,24 @@ function showItems() {
 
         itemStr += `<li>${name} $${price} x ${qty} = ${qty * price}</li>`
     }
+
+    const all_items_button = Array.from(document.querySelectorAll('button'))
+    all_items_button.forEach(elt => elt.addEventListener('click', () => {
+        addItem(elt.getAttribute('id'), elt.getAttribute('data-price'))
+        showItems()
+      }))
+    // for (let i = 0; i < all_items_button.length; i += 1) {
+        
+    // }
+
     itemList.innerHTML = itemStr
 
     cartTotal.innerHTML = `Total in cart: $${getTotal()}`
+
+
 }
+
+
 
 // calculate and return the quantity of items in the cart
 function getQty () {
@@ -133,18 +147,18 @@ function removeItem(name, qty = 0) {
 
 
 // ------------------------- test code ------------------------------------------
-addItem('Apple', 0.99)
-addItem('Orange', 1.29)
-addItem('Opinion', 0.02)
-addItem('Apple', 0.99)
-addItem('Frisbee', 9.92)
-addItem('Apple', 0.99)
-addItem('Orange', 1.29)
+// addItem('Apple', 0.99)
+// addItem('Orange', 1.29)
+// addItem('Opinion', 0.02)
+// addItem('Apple', 0.99)
+// addItem('Frisbee', 9.92)
+// addItem('Apple', 0.99)
+// addItem('Orange', 1.29)
 
-showItems()
+// showItems()
 
-removeItem('Apple', 1)
-removeItem('Frisbee')
+// removeItem('Apple', 1)
+// removeItem('Frisbee')
 
 
 showItems()
